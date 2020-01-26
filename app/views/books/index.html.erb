@@ -1,12 +1,13 @@
 <div class="body">
 	<div class="container">
-<% if flash[:notice] %>
-		<p><%= flash[:notice] %></p>
-<% end %>
-<!-- ↓部分テンプレート呼び出し -->
-<%= render 'books/list', book: @book, user: @user %>
+		<% if flash[:notice] %>
+			<p><%= flash[:notice] %></p>
+		<% end %>
 <!-- ↓全ユーザー投稿一覧(headerのBooks) -->
 		<div class="row">
+			<!-- ↓部分テンプレート呼び出し -->
+			<%= render 'books/list', book: @book, user: @user %>
+
 			<div class="col-xs-9">
 				<h2>Books</h2>
 				<table class="table">
