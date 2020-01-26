@@ -1,0 +1,27 @@
+<!-- 投稿編集画面 -->
+<h1>Editing Book</h1>
+
+<%= form_for(@book) do |f| %>
+
+	<label for="book_title">Title</label>
+	<%= f.text_field :title %>
+
+	<label for="book_opinion">Opinion</label>
+	<%= f.text_area :body %>
+
+	<%= f.submit "Update Book" %>
+<% end %>
+
+<%= link_to "Show", book_path %>
+|
+<%= link_to "Back", books_path %>
+
+<!-- ↓エラー -->
+<% if @book.errors.any? %>
+	<h3><%= @book.errors.count %>errorです。</h3>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+<% end %>

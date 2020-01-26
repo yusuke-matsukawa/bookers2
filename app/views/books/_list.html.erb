@@ -1,0 +1,48 @@
+<div class="body">
+<!-- ↓ログインユーザーinfo -->
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-3">
+				<h2>User info</h2>
+				<%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %>
+				<table class="table">
+					<tbody>
+						<tr></tr>
+						<tr>
+							<th>name</th>
+							<th><%= user.name %></th>
+						</tr>
+						<tr>
+							<th>introduction</th>
+							<th><%= user.introduction %></th>
+						</tr>
+					</tbody>
+				</table>
+				<%= link_to "編集アイコン", edit_user_path(current_user.id) %>
+<!-- ↑プロフィール編集ボタン -->
+
+<!-- ↓新規投稿フォーム -->
+				<h2>New book</h2>
+				<%= form_for(book) do |f| %>
+				<h4>Title</h4>
+				<%= f.text_field :title %>
+
+				<h4>Body</h4>
+				<%= f.text_area :body %>
+
+				<%= f.submit 'Create Book' %>
+				<% end %>
+
+<!-- ↓エラー -->
+				<% if book.errors.any? %>
+					<h3><%= book.errors.count %>errorです。</h3>
+    				<ul>
+      					<% book.errors.full_messages.each do |message| %>
+        					<li><%= message %></li>
+      					<% end %>
+    				</ul>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,27 @@
+<!-- プロフィール編集画面 -->
+<h2>User info</h2>
+
+<%= form_for(@user) do |f| %>
+
+	<h4>Name</h4>
+	<%= f.text_field :name %>
+
+	<h4>Image</h4>
+	<%= f.attachment_field :profile_image %>
+
+	<h4>Introduction</h4>
+	<%= f.text_area :introduction %>
+
+	<%= f.submit "Update User" %>
+<% end %>
+
+<!-- ↓エラー -->
+<% if @user.errors.any? %>
+	<h3><%= @user.errors.count %>errorです。</h3>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+   </div>
+<% end %>

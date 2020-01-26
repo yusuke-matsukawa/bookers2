@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="navbar navbar-inverse">
+      <div class="container">
+        <nav class="nav navbar-nav navbar-left">
+          <h2 class="text-muted">Bookers</h2>
+        </nav>
+        <nav>
+          <% if user_signed_in? %>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                  <span class="glyphicon glyphicon-home"></span>
+                  <%= link_to 'Home', user_path(current_user.id) %>
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-user"></span>
+                  <%= link_to 'Users', users_path %>
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-book"></span>
+                  <%= link_to 'Books', books_path %>
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-log-out"></span>
+                  <%= link_to "logout", destroy_user_session_path, method: :delete %>
+                </li>
+            </ul>
+
+          <% else %>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                  <span class="glyphicon glyphicon-home"></span>
+                  <%= link_to "Home", root_path %>
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-link"></span>
+                  <%= link_to "About", home_about_path %>
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-edit"></span>
+                  <%= link_to "sign up", new_user_registration_path %>
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-log-in"></span>
+                  <%= link_to "login", new_user_session_path %>
+                </li>
+            </ul>
+          <% end %>
+        </nav>
+      </div>
+    </header>
+    <%= yield %>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-3 col-xs-offset-9">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
